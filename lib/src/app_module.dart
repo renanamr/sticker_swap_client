@@ -21,7 +21,7 @@ class AppModule extends Module{
     Bind<Auth>((i)=>Auth()),
     Bind<AlbumManager>((i) => AlbumManager()),
     Bind<User>((i)=>User(
-      id: 0,
+      id: "0",
       name: "Nome de teste",
       image: "https://pbs.twimg.com/profile_images/1480660529840492546/nTVLSngG_400x400.jpg",
       email: "tirarDepois@ufrn.edu.br"

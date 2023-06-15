@@ -3,14 +3,14 @@ import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart'
 import 'package:flutter_modular/flutter_modular.dart';
 
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  LoginState createState() => LoginState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class LoginState extends ModularState<Login, LoginBloc> {
+class LoginScreenState extends ModularState<LoginScreen, LoginBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
