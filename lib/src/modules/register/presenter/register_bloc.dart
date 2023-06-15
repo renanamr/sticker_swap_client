@@ -10,7 +10,7 @@ class RegisterBloc{
 
   final registerUsecase = Modular.get<IRegisterUser>();
 
-  void verifyAuth()=> Modular.to.pushReplacementNamed("/");
+  void verifyAuth()=> Modular.to.pushNamedAndRemoveUntil("/", (_)=> false);
 
   Future<Map?> register()async{
     if(passwordController.text == passwordConfirmController.text){

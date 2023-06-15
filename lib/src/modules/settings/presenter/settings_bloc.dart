@@ -5,7 +5,7 @@ class SettingsBloc{
 
   void logout() async {
     FirebaseAuth.instance.signOut();
-    Modular.to.pushReplacementNamed('/login/');
+    Modular.to.pushNamedAndRemoveUntil('/login/', (_)=> false);
   }
 
 }

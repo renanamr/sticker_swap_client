@@ -13,7 +13,7 @@ class LoginBloc{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void verifyAuth()=> Modular.to.pushReplacementNamed("/");
+  void verifyAuth()=> Modular.to.pushNamedAndRemoveUntil("/", (_)=> false);
   void toRegisterScreen()=> Modular.to.pushNamed("/register/");
 
   Future<void> login() async{
