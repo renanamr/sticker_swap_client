@@ -3,6 +3,13 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.
 class RegisterAlbumConfig{
   static Map<String, Map<String, dynamic>> init(){
     return {
+    for(int i=1; i<=7; i++)
+      "FWC $i": Sticker(id: 2, text: "FWC $i", idGroup: 0, quantity: 0).toMap(),
+    for(int i=8; i<=17; i++)
+      "FWC $i": Sticker(id: i, text: "FWC $i", idGroup: 1, quantity: 0).toMap(),
+
+      "FWC 18": Sticker(id: 18, text: "FWC 18", idGroup: 2, quantity: 0).toMap(),
+
     for(int i=1; i<=20; i++)
       "QAT $i": Sticker(id: i, text: "QAT $i", idGroup: 3, quantity:0).toMap(),
     for(int i=1; i<=20; i++)
@@ -27,8 +34,31 @@ class RegisterAlbumConfig{
       "MEX $i": Sticker(id: i, text: "MEX $i", idGroup: 13, quantity:0).toMap(),
     for(int i=1; i<=20; i++)
       "POL $i": Sticker(id: i, text: "POL $i", idGroup: 14, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "FRA $i": Sticker(id: i, text: "FRA $i", idGroup: 15, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "AUS $i": Sticker(id: i, text: "AUS $i", idGroup: 16, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "DEN $i":Sticker(id: i, text: "DEN $i", idGroup: 17, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "TUN $i":Sticker(id: i, text: "TUN $i", idGroup: 18, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "ESP $i":Sticker(id: i, text: "ESP $i", idGroup: 19, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "CRC $i":Sticker(id: i, text: "CRC $i", idGroup: 20, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "GER $i":Sticker(id: i, text: "GER $i", idGroup: 21, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "JPN $i": Sticker(id: i, text: "JPN $i", idGroup: 22, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "BEL $i": Sticker(id: i, text: "BEL $i", idGroup: 23, quantity:0).toMap(),
+        for(int i=1; i<=20; i++)
+          "CAN $i": Sticker(id: i, text: "CAN $i", idGroup: 24, quantity:0).toMap(),
+    for(int i=1; i<=20; i++)
+      "MAR $i": Sticker(id: i, text: "MAR $i", idGroup: 25, quantity:0).toMap(),
 
-
+      for(int i=1; i<=20; i++)
+      "CRO $i": Sticker(id: i, text: "CRO $i", idGroup: 27, quantity:0).toMap(),
     for(int i=1; i<=20; i++)
       "BRA $i": Sticker(id: i, text: "BRA $i", idGroup: 27, quantity:0).toMap(),
     for(int i=1; i<=20; i++)

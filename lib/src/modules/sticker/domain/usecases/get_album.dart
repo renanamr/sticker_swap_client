@@ -23,6 +23,7 @@ class GetAlbumImpl extends IGetAlbum{
     print(result.data());
 
     album.collectionStickers = _generateAlbum(result.data()!);
+
     return album;
   }
 
