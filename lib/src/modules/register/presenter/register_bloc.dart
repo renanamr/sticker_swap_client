@@ -8,10 +8,14 @@ class RegisterBloc{
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController = TextEditingController();
 
-  void verifyAuth()=> Modular.to.pushReplacementNamed("/login/");
+  final registerUsecase = Modular.get<IRegisterUser>();
+
+  void verifyAuth()=> Modular.to.pushReplacementNamed("/");
 
   Future<Map?> register()async{
-    RegisterUserImpl userImpl = RegisterUserImpl();
-    userImpl.call("renan@gmail.com", "Senha123@");
+    if(passwordController.text == passwordConfirmController.text){
+      bool sucesso = await registerUsecase(emailController.text, passwordController.text);
+      if(sucesso) verifyAuth();
+    }
   }
 }
