@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "597341655229-vee5nlkg552p72b6cal2ve9uedk10i3j.apps.googleusercontent.com",
+              "client_id": "597341655229-bris2a1ue0q7vo957dhuf6lq3ujdeiu7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.client"
+                "bundle_id": "com.example.stickerSwapClient"
               }
             }
           ]
