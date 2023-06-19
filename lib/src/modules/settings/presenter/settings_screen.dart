@@ -147,10 +147,20 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
         });
   }
 
-  Widget buildProfileImage() => const CircleAvatar(
-    radius: 55,
-    backgroundImage: AssetImage('assets/images/profile_picture.png'),
-  );
+  CircleAvatar buildProfileImage(){
+    ImageProvider? image;
+    if(controller.user.image == null){
+      image = const AssetImage('assets/images/logo.png');
+    }else{
+      image = NetworkImage(controller.user.image!);
+    }
+
+    return CircleAvatar(
+      radius: 55,
+      backgroundColor: Colors.white,
+      backgroundImage: image,
+    );
+  }
 
 
 }

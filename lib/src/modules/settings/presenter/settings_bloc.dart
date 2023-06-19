@@ -5,16 +5,16 @@ import 'package:sticker_swap_client/src/core/entities/user.dart';
 
 class SettingsBloc{
 
-  final _user= Modular.get<User>();
+  final user= Modular.get<User>();
 
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController username = TextEditingController();
 
   void initScreen(){
-    email.text= _user.email!;
-    name.text= _user.name!;
-    username.text= _user.username ?? "";
+    email.text= user.email!;
+    name.text= user.name!;
+    username.text= user.username ?? "";
   }
 
   void logout() async {
