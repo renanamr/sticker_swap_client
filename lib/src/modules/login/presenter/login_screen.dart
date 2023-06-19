@@ -11,6 +11,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends ModularState<LoginScreen, LoginBloc> {
+
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,16 +74,23 @@ class LoginScreenState extends ModularState<LoginScreen, LoginBloc> {
                 ),
             ),
             ),
-            Container(
-                height: 80,
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: controller.login,
-                  child: const Text('Log In'),
-                )),
+            StreamBuilder<bool>(
+              stream: controller.isLoading,
+              initialData: false,
+              builder: (context, snapshot) {
+                if(snapshot.data!) return const Center(child: CircularProgressIndicator());
+                return Container(
+                    height: 80,
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: controller.login,
+                      child: const Text('Log In'),
+                    ));
+              }
+            ),
             TextButton(
               onPressed: () {controller.toRegisterScreen();},
               child: Text(
