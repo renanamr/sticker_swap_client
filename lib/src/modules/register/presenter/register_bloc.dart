@@ -4,7 +4,10 @@ import 'package:sticker_swap_client/src/modules/register/domain/usecases/registe
 
 class RegisterBloc{
 
+
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController urlImageController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController = TextEditingController();
 
@@ -17,5 +20,13 @@ class RegisterBloc{
       bool sucesso = await registerUsecase(emailController.text, passwordController.text);
       if(sucesso) verifyAuth();
     }
+  }
+
+  void dispose(){
+    nameController.dispose();
+    emailController.dispose();
+    urlImageController.dispose();
+    passwordController.dispose();
+    passwordConfirmController.dispose();
   }
 }
