@@ -48,11 +48,13 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
               prefixIcon: const Icon(Icons.image),
             ),
             _inputText(
+              obscureText: true,
               labelText: 'Senha',
               controller: controller.passwordController,
               prefixIcon: const Icon(Icons.key),
             ),
             _inputText(
+              obscureText: true,
               labelText: 'Confirme senha',
               controller: controller.passwordConfirmController,
               prefixIcon: const Icon(Icons.key),
@@ -76,6 +78,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
 
   Widget _inputText({
     String? hintText,
+    bool obscureText = false,
     required Icon prefixIcon,
     required String labelText,
     required TextEditingController controller
@@ -84,7 +87,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
       padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
       child: TextField(
         controller: controller,
-        obscureText: true,
+        obscureText: obscureText,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(90.0),

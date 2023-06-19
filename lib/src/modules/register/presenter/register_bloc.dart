@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/core/alerts/alert_dialog.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/register/domain/usecases/register_user.dart';
 
 class RegisterBloc{
@@ -17,8 +19,28 @@ class RegisterBloc{
 
   Future<Map?> register()async{
     if(passwordController.text == passwordConfirmController.text){
-      bool sucesso = await registerUsecase(emailController.text, passwordController.text);
-      if(sucesso) verifyAuth();
+      bool sucesso = await registerUsecase(
+          User(
+            email: emailController.text,
+            name: nameController.text,
+            image: urlImageController.text,
+          ),
+          passwordController.text
+      );
+
+      if(sucesso) {
+        verifyAuth();
+      } else {
+        alertMensagem(
+          titulo: "Ops...",
+          descricao: "Não foi possível registrar o usuário, tente novamente mais tarde."
+        );
+      }
+    }else{
+      alertMensagem(
+          titulo: "Ops...",
+          descricao: "As senhas informadas não são iguais!"
+      );
     }
   }
 
