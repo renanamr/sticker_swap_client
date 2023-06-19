@@ -59,16 +59,24 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
               controller: controller.passwordConfirmController,
               prefixIcon: const Icon(Icons.key),
             ),
-            Container(
-                height: 80,
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: controller.register,
-                  child: const Text('Cadastre-se'),
-                )),
+            StreamBuilder<bool>(
+              stream: controller.isLoading,
+              initialData: false,
+              builder: (context, snapshot) {
+                if(snapshot.data!) return const Center(child: CircularProgressIndicator());
+
+                return Container(
+                    height: 80,
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: controller.register,
+                      child: const Text('Cadastre-se'),
+                    ));
+              }
+            ),
           ],
         )
       )
