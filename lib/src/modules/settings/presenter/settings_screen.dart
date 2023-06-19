@@ -10,14 +10,17 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
 
   @override
   void initState() {
+    controller.initScreen();
     super.initState();
-    _email = TextEditingController(text: 'enne@gmail.com');
-    _password = TextEditingController(text: '****************');
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -25,7 +28,7 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
     return Expanded(
         child: Scaffold(
             appBar: AppBar(
-              title: Text('Configurações'),
+              title: const Text('Configurações'),
             ),
             body: SingleChildScrollView(
               child: Column(
@@ -49,10 +52,10 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
                       onPressed: () {},
                     ),
                   ),
-                  Container(
+                  Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                     child: TextField(
-                      controller: _email,
+                      controller: controller.email,
                       decoration: InputDecoration(
                         suffixIcon: const Icon(Icons.edit),
                         border: OutlineInputBorder(
@@ -62,22 +65,38 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
                       ),
                     ),
                   ),
-                  Container(
+                  Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                     child: TextField(
-                      controller: _password,
+                      controller: controller.name,
                       decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.remove_red_eye),
+                        suffixIcon: const Icon(Icons.person),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(90.0),
                         ),
-                        labelText: 'Password',
+                        labelText: 'Nome',
                       ),
                     ),
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: TextField(
+                      controller: controller.username,
+                      decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.person_search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(90.0),
+                        ),
+                        labelText: 'Username',
+                      ),
+                    ),
+                  ),
+
+
                   Container(
                     height: 80,
-                    margin: const EdgeInsets.only(top: 250),
+                    margin: const EdgeInsets.only(top:20),
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
