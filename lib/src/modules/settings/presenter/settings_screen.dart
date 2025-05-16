@@ -10,7 +10,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
-
   @override
   void initState() {
     controller.initScreen();
@@ -28,7 +27,13 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
     return Expanded(
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('Configurações'),
+              elevation: 0.0,
+              backgroundColor: Colors.transparent,
+              title: const Text(
+                'Configurações',
+                style: TextStyle(color: Colors.black),
+              ),
+              centerTitle: true,
             ),
             body: SingleChildScrollView(
               child: Column(
@@ -36,7 +41,7 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 10),
                     child: buildProfileImage(),
                   ),
                   Container(
@@ -78,7 +83,6 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                     child: TextField(
@@ -90,24 +94,22 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
                         ),
                         labelText: 'Username',
                       ),
+                      onEditingComplete: controller.editUsername,
                     ),
                   ),
-
-
                   Container(
-                    height: 80,
-                    margin: const EdgeInsets.only(top:20),
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                      ),
-                      child: const Text('Sair'),
-                      onPressed: () async {
-                        _showLogOutModalDialog(context);
-                      },
-                    )
-                  ),
+                      height: 80,
+                      margin: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        child: const Text('Sair'),
+                        onPressed: () async {
+                          _showLogOutModalDialog(context);
+                        },
+                      )),
                 ],
               ),
             )));
@@ -118,40 +120,59 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-            content: RichText(
-              textAlign: TextAlign.justify,
-              text: const TextSpan(
-                  text:
-                  "Você tem certeza que deseja sair do Sticker Swap?",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      color: Colors.black,
-                      wordSpacing: 1)),
-            ),
-            actions: [
-              Container(
-                  height: 80,
-                  padding: const EdgeInsets.all(20),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            content: IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    textAlign: TextAlign.justify,
+                    text: const TextSpan(
+                      text: "Você tem certeza que deseja sair do Sticker Swap?",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          color: Colors.black,
+                          wordSpacing: 1),
                     ),
-                    onPressed: controller.logout,
-                    child: const Text('Sim'),
-                  ))
-            ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            backgroundColor: Colors.white,
+                            side: const BorderSide(width: 3),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Não'),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: controller.logout,
+                          child: const Text('Sim'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           );
         });
   }
 
-  CircleAvatar buildProfileImage(){
+  CircleAvatar buildProfileImage() {
     ImageProvider? image;
-    if(controller.user.image == null){
+    if (controller.user.image == null) {
       image = const AssetImage('assets/images/logo.png');
-    }else{
+    } else {
       image = NetworkImage(controller.user.image!);
     }
 
@@ -161,6 +182,4 @@ class _SettingsScreenState extends ModularState<SettingsScreen, SettingsBloc> {
       backgroundImage: image,
     );
   }
-
-
 }
